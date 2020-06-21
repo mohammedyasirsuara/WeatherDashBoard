@@ -30,7 +30,7 @@ const getCurrentWeather = (name) => {
             return response.json()
         })
         .then((data) => {
-            //console.log(data)
+            console.log(data)
 
             currentLocation.textContent = data.name + ", " + data.sys.country
             currentDate.textContent = new Date(data.dt * 1000).toLocaleDateString("en-US")
@@ -45,7 +45,10 @@ const getCurrentWeather = (name) => {
             getIndex(weather.lat, weather.lon)
         }).then(() => {
             getforecast(weather.city)
-        })
+        })//.catch((error)=>{
+        //     alert("Invalid City!!")
+        //     cityList.removeChild(cityList.children[0])
+        // })
 }
 
 const getIndex = (lati, longi) => {
@@ -81,7 +84,7 @@ const getIndex = (lati, longi) => {
 }
 
 const getforecast = (city) => {
-    let url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey
+    let url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey + '&units=imperial'
     fetch(url)
         .then((response) => {
             return response.json();
@@ -98,26 +101,30 @@ const getforecast = (city) => {
             for (var i = 0; i < temp.length; i++) {
                 //var dat = new Date(data.list[weatherIndex].dt * 1000).toLocaleDateString("en-US")
                 var date = moment().add(day, 'days').format("MM/DD/YYYY")
-                console.log(date)
+                //console.log(temp[i].children)
 
-                var p = document.createElement("p")
-                p.textContent = date
-                temp[i].appendChild(p)
+                // var p = document.createElement("p")
+                // p.textContent = date
+                // temp[i].appendChild(p)
+                temp[i].children[0].textContent = date
 
-                var img = document.createElement("img")
-                img.setAttribute('src', "https://openweathermap.org/img/wn/" + data.list[weatherIndex].weather[0].icon + "@2x.png")
-                img.style.width = "70px"
-                temp[i].appendChild(img)
+                // var img = document.createElement("img")
+                // img.setAttribute('src', "https://openweathermap.org/img/wn/" + data.list[weatherIndex].weather[0].icon + "@2x.png")
+                // img.style.width = "70px"
+                // temp[i].appendChild(img)
+                temp[i].children[1].src = "https://openweathermap.org/img/wn/" + data.list[weatherIndex].weather[0].icon + "@2x.png"
 
-                var p2 = document.createElement("p")
-                p2.textContent = "Humidity: " + data.list[weatherIndex].main.humidity + "%"
-                temp[i].appendChild(p2)
+                // var p2 = document.createElement("p")
+                // p2.textContent = "Humidity: " + data.list[weatherIndex].main.humidity + "%"
+                // temp[i].appendChild(p2)
+                temp[i].children[2].textContent = "Humidity: " + data.list[weatherIndex].main.humidity + "%"
 
-                var p3 = document.createElement("p")
-                p3.innerHTML = 'Temp: ' + convert(data.list[weatherIndex].main.temp) + '&#8451;'
-                temp[i].appendChild(p3)
-
-
+                // var p3 = document.createElement("p")
+                // p3.innerHTML = 'Temp: ' + convert(data.list[weatherIndex].main.temp) + '&#8451;'
+                // temp[i].appendChild(p3)
+                // console.log(data.list[weatherIndex].main.temp)
+                temp[i].children[3].textContent = 'Temp: ' + convert(data.list[weatherIndex].main.temp) + "°C"
+    
                 weatherIndex += 8
                 day++
             }
