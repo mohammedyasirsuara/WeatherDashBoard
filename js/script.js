@@ -24,7 +24,7 @@ function convert(value) {
 
 const getCurrentWeather = (name) => {
 
-    let url = 'http://api.openweathermap.org/data/2.5/weather?q=' + name + '&APPID=' + apiKey + '&units=imperial';
+    let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + name + '&APPID=' + apiKey + '&units=imperial';
     fetch(url)
         .then((response) => {
             return response.json()
