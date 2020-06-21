@@ -1,0 +1,13 @@
+#page-title{
+    background-color: skyblue;
+    padding: 1em;
+    margin: 0px;
+}
+#title{
+    text-align: center;
+}
+#search{
+    margin-top: 0rem;
+    margin-left: 0rem;
+    background-color: whitesmoke;
+}

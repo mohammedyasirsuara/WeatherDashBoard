@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header id="page-title">
+        <h1 id="title">Weather Dashboard</h1>
+    </header>
+
+    <div class="container-fluid">
+        <aside id="search" class="rounded col-lg-3 p-3 float-left">
+            <div id="searchcity">
+                <h4>Search City: </h4>
+                <form>
+                    <div class="row align-items-center">
+                        <input type="text" class=" col-9 form-control" id="userInput" placeholder="City">
+                        <button class="col-3 btn btn-primary" type="submit" id="searchBtn"><i class="fas fa-search"></i></button>                       
+                    </div>
+                </form>
+            </div>
+            <!--List of already searched cities-->
+            <ul id="citylist" class="pt-1 ml-0">
+
+            </ul>
+        </aside>
+
+        <main class="col-lg-9 float-right">
+            <div class="container card col-12 mt-2">
+                <h4 class="mb-2">
+                    <span id="currLocation">Location </span>(<span id="currDate">Date</span>)
+                    <img src="" id="weather-icon" width="70px">
+                </h4>
+                <p>Temperature: <span id="temp"></span>&#8451;</p>
+                <p>Humidity: <span id="humid"></span>%</p>
+                <p>Wind Speed: <span id="wSpeed"></span>m/s</p>
+                <p>UV Index: <a class="btn btn-sm " id="uvIndex" type="button"></a></p>
+            </div>  
+            
+            <h4>Forecast for Next 5 Days: </h4>
+            <section class="col-12">
+                <div class="row">
+                    <div id="one"class="card col-lg-2 mt-1 pt-2 days"></div>
+                    <div id="two"class="card col-lg-2 mt-1 pt-2 days"></div>
+                    <div id="three"class="card col-lg-2 mt-1 pt-2 days"></div>
+                    <div id="four"class="card col-lg-2 mt-1 pt-2 days"></div>
+                    <div id="five"class="card col-lg-2 mt-1 pt-2 days"></div>
+                </div> 
+            </section>
+        </main>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src=" js/script.js"></script>
+</body>
+
+</html>
