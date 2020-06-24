@@ -7,10 +7,13 @@
     text-align: center;
 }
 #search{
-    margin-top: 0rem;
+    margin-top: 2px;
     margin-left: 0rem;
-    background-color: whitesmoke;
+    background-color: darkcyan;
 }
 .days{
     background-color: cadetblue;
+}
+#citylist{
+    margin-left: -10px;
 }

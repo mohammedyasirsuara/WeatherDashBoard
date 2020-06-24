@@ -23,13 +23,14 @@
                 <h4>Search City: </h4>
                 <form>
                     <div class="row align-items-center">
-                        <input type="text" class=" col-9 form-control" id="userInput" placeholder="City">
-                        <button class="col-3 btn btn-primary" type="submit" id="searchBtn"><i class="fas fa-search"></i></button>                       
+                        <input type="text" class=" ml-1 col-9 form-control" id="userInput" placeholder="City">
+                        <button class="col-2 btn btn-primary" type="submit" id="searchBtn"><i
+                                class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
             <!--List of already searched cities-->
-            <ul id="citylist" class="list-group pt-1 ml-0">
+            <ul id="citylist" class="list-group pt-1">
 
             </ul>
         </aside>
@@ -44,48 +45,54 @@
                 <p>Humidity: <span id="humid"></span>%</p>
                 <p>Wind Speed: <span id="wSpeed"></span>m/s</p>
                 <p>UV Index: <a class="btn btn-sm " id="uvIndex" type="button"></a></p>
-            </div>  
-            
+            </div>
+            <!--created a card to take in the info for the next 5 days-->
             <h4>Forecast for Next 5 Days: </h4>
             <section class="col-12">
                 <div class="row">
-                    <div id="one"class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
+                    <div id="one" class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
                         <p></p>
                         <img src="" width="70px">
                         <p></p>
                         <p><span id="temp1"></span>&#8451;</p>
                     </div>
-                    <div id="two"class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
+                    <div id="two" class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
                         <p></p>
                         <img src="" width="70px">
                         <p></p>
                         <p><span id="temp2"></span>&#8451;</p>
                     </div>
-                    <div id="three"class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
+                    <div id="three" class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
                         <p></p>
                         <img src="" width="70px">
                         <p></p>
                         <p><span id="temp3"></span>&#8451;</p>
                     </div>
-                    <div id="four"class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
+                    <div id="four" class="card col-sm-4 col-md-4 col-lg-2 mt-1 ml-2 pt-2 days">
                         <p></p>
                         <img src="" width="70px">
                         <p></p>
                         <p><span id="temp2"></span>&#8451;</p>
                     </div>
-                    <div id="five"class="card col-sm-4 col-md-4 col-lg-2 mt-1 pt-2 ml-2 days">
+                    <div id="five" class="card col-sm-4 col-md-4 col-lg-2 mt-1 pt-2 ml-2 days">
                         <p></p>
                         <img src="" width="70px">
                         <p></p>
                         <p><span id="temp5"></span>&#8451;</p>
                     </div>
-                </div> 
+                </div>
             </section>
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src=" js/script.js"></script>
 </body>

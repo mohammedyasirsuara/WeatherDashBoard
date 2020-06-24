@@ -11,27 +11,28 @@ const currhumidity = document.querySelector("#humid")
 const currWind = document.querySelector("#wSpeed")
 const currUV = document.querySelector("#uvIndex")
 
+//to store the city name, latitude and longitude
 let weather = {
     lat: '',
     lon: '',
     city: ''
 }
 
+//convert the temperature value from Fahrenheit to Celcius
 function convert(value) {
     var x = Math.floor((value - 32) * 5 / 9)
     return x;
 }
 
+//get the weather forecast for that day
 const getCurrentWeather = (name) => {
-
     let url = 'https://api.openweathermap.org/data/2.5/weather?q=' + name + '&APPID=' + apiKey + '&units=imperial';
     fetch(url)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
-            console.log(data)
-
+            //console.log(data)
             currentLocation.textContent = data.name + ", " + data.sys.country
             currentDate.textContent = new Date(data.dt * 1000).toLocaleDateString("en-US")
             document.querySelector('#weather-icon').src = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
@@ -42,15 +43,18 @@ const getCurrentWeather = (name) => {
             weather.lon = data.coord.lon
             weather.city = data.name
         }).then(() => {
+            //gets the uv index value
             getIndex(weather.lat, weather.lon)
         }).then(() => {
+            //gets the forecast for the next 5 days
             getforecast(weather.city)
         })//.catch((error)=>{
-        //     alert("Invalid City!!")
-        //     cityList.removeChild(cityList.children[0])
-        // })
+    //     alert("Invalid City!!")
+    //     cityList.removeChild(cityList.children[0])
+    // })
 }
 
+//function to get the uv index number based on latitude and longitude
 const getIndex = (lati, longi) => {
     let url = 'https://api.openweathermap.org/data/2.5/uvi?appid=' + apiKey + '&lat=' + lati + '&lon=' + longi
     fetch(url)
@@ -63,7 +67,7 @@ const getIndex = (lati, longi) => {
             let uvNum = data.value
             currUV.textContent = uvNum
 
-
+            //check the uvNumber with the index and set the button colour accordingly
             if (uvNum >= 0 && uvNum <= 2) {
                 currUV.textContent = uvNum
                 currUV.classList.remove("bg-warning")
@@ -83,78 +87,68 @@ const getIndex = (lati, longi) => {
         })
 }
 
+//function to generate the forecast for the next 5 days
 const getforecast = (city) => {
     let url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + apiKey + '&units=imperial'
     fetch(url)
         .then((response) => {
             return response.json();
         }).then((data) => {
-
-            let stamps = document.querySelectorAll(".days")
-            for (i = 0; i < stamps; i++) {
-                stamps[i].innerHTML = ''
-            }
-            console.log(data)
-            let temp = document.querySelectorAll(".days")
+            //console.log(data)
+            let temp = document.querySelectorAll(".days") //select the cards for the 5 day forecast
             var weatherIndex = 0
             let day = 1
             for (var i = 0; i < temp.length; i++) {
-                //var dat = new Date(data.list[weatherIndex].dt * 1000).toLocaleDateString("en-US")
+                //increase the date by 1
                 var date = moment().add(day, 'days').format("MM/DD/YYYY")
                 //console.log(temp[i].children)
 
-                // var p = document.createElement("p")
-                // p.textContent = date
-                // temp[i].appendChild(p)
+                //change the html text to the date
                 temp[i].children[0].textContent = date
 
-                // var img = document.createElement("img")
-                // img.setAttribute('src', "https://openweathermap.org/img/wn/" + data.list[weatherIndex].weather[0].icon + "@2x.png")
-                // img.style.width = "70px"
-                // temp[i].appendChild(img)
+                //set the src attribute of the html element to the weather icon
                 temp[i].children[1].src = "https://openweathermap.org/img/wn/" + data.list[weatherIndex].weather[0].icon + "@2x.png"
 
-                // var p2 = document.createElement("p")
-                // p2.textContent = "Humidity: " + data.list[weatherIndex].main.humidity + "%"
-                // temp[i].appendChild(p2)
+                //change the html element text to the humidity value
                 temp[i].children[2].textContent = "Humidity: " + data.list[weatherIndex].main.humidity + "%"
 
-                // var p3 = document.createElement("p")
-                // p3.innerHTML = 'Temp: ' + convert(data.list[weatherIndex].main.temp) + '&#8451;'
-                // temp[i].appendChild(p3)
-                // console.log(data.list[weatherIndex].main.temp)
+                //change the html element text to the temperature value
                 temp[i].children[3].textContent = 'Temp: ' + convert(data.list[weatherIndex].main.temp) + "°C"
-    
-                weatherIndex += 8
-                day++
+
+                weatherIndex += 8 //increase the weather index by every 8 arrays (8 arrays per day)
+                day++ //increase the day count
             }
         })
 }
 
 const renderSearch = (e) => {
     e.preventDefault()
+
     let stamps = document.querySelectorAll(".days")
     for (i = 0; i < stamps; i++) {
         stamps[i].innerHTML = ''
     }
     let name = ''
     if (cityName.value) {
+        //convert the first digit of the number to uppercase and the rest to lowercase
         name = cityName.value[0].toUpperCase() + cityName.value.slice(1).toLowerCase();
+
         // console.log(name)
     } else {
         return
     }
-
+    //store searched city to local storage
     localStorage.setItem('city', name)
     cityName.value = ''
 
     //store searched city to a list
     createList(name)
 
-    //
+    //get the current weather of the searched city
     getCurrentWeather(name)
 }
 
+//function to add a city to the list group everytime a city is searched
 const createList = (temp) => {
     let item = document.createElement('li')
     item.classList.add('list-group-item')
@@ -162,16 +156,17 @@ const createList = (temp) => {
     item.addEventListener('click', function (e) {
         var item = e.target.textContent
         let stamps = document.querySelectorAll(".days")
-        for (i = 0; i < stamps; i++) {
-            stamps[i].innerHTML = ''
-        }
+        // for (i = 0; i < stamps; i++) {
+        //     stamps[i].innerHTML = ''
+        // }
         getCurrentWeather(item)
     })
     cityList.prepend(item)
 }
 
-
 searchBtn.addEventListener('click', renderSearch)
+
+//get the last searched city when the page is reloaded
 const lcity = localStorage.getItem('city')
 if (lcity) {
     getCurrentWeather(lcity)
